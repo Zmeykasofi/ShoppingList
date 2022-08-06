@@ -29,32 +29,24 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Список покупок:");
-                    for (String itemAdded : list) {
-                        System.out.println((list.indexOf(itemAdded) + 1) + ". " + itemAdded);
-                    }
+                    printList(list);
                     break;
                 case 3:
                     System.out.println("Список покупок:");
-                    for (String item : list) {
-                        System.out.println((list.indexOf(item) + 1) + ". " + item);
-                    }
+                    printList(list);
                     System.out.println("Какой товар хотите удалить? Введите номер или название.");
                     String itemDelete = scanner.nextLine();
                     try {
                         int itemDelInt = Integer.parseInt(itemDelete) - 1;
                         System.out.println("Покупка " + "'" + list.get(itemDelInt) + "'" + " удалена, список покупок:");
                         list.remove(itemDelInt);
-                        for (String itemRemain : list) {
-                            System.out.println((list.indexOf(itemRemain) + 1) + ". " + itemRemain);
-                        }
+                        printList(list);
                         continue;
                     } catch (NumberFormatException e) {
                         if (list.contains(itemDelete)) {
                             list.remove(itemDelete);
                             System.out.println("Покупка " + "'" + itemDelete + "'" + " удалена, список покупок:");
-                            for (String itemRemain : list) {
-                                System.out.println((list.indexOf(itemRemain) + 1) + ". " + itemRemain);
-                            }
+                            printList(list);
                         } else {
                             System.out.println("Товар не найден в списке покупок!");
                         }
@@ -73,6 +65,12 @@ public class Main {
                         }
                     }
             }
+        }
+    }
+
+    public static void printList(List<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i));
         }
     }
 }
